@@ -21,7 +21,7 @@ func handleConnection(connection net.Conn) {
 
 	go func() {
 		for {
-			buffer := make([]byte, 8)
+			buffer := make([]byte, 8096)
 			_, err := connection.Read(buffer[:])
 			if err != nil {
 				fmt.Println(err)
@@ -35,7 +35,7 @@ func handleConnection(connection net.Conn) {
 	}()
 
 	for {
-		buffer := make([]byte, 8)
+		buffer := make([]byte, 8096)
 		fmt.Scanf("%s", &buffer)
 		_, err := connection.Write(buffer)
 		if err != nil {

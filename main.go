@@ -8,7 +8,10 @@ import (
 var connectionList []net.Conn
 
 func main() {
+	StartServer()
+}
 
+func StartServer() {
 	listener, err := net.Listen("tcp4", "127.0.0.1:8080")
 	if err != nil {
 		fmt.Println(err)
@@ -35,7 +38,7 @@ func handleConnection(connection net.Conn) {
 
 	for {
 
-		buffer := make([]byte, 8)
+		buffer := make([]byte, 8096)
 		_, err := connection.Read(buffer[:])
 		if err != nil {
 			fmt.Println(err)
