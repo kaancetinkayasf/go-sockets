@@ -7,6 +7,11 @@ import (
 
 func main() {
 
+	ConnectToServer()
+
+}
+
+func ConnectToServer() {
 	connection, err := net.Dial("tcp", "127.0.0.1:8080")
 	if err != nil {
 		panic(err)
@@ -14,7 +19,6 @@ func main() {
 	defer connection.Close()
 
 	handleConnection(connection)
-
 }
 
 func handleConnection(connection net.Conn) {
